@@ -1,13 +1,14 @@
-const mongoose = require("mongoose")
+import mongoose from "mongoose"
 
 const ProductSchema = new mongoose.Schema({
-	productId: String,
+	// productId: Number,
 	title: String,
-	description: String,
 	price: Number,
-	dateOfSale: Date,
-	sold: Boolean,
+	description: String,
 	category: String,
+	image: String,
+	sold: Boolean,
+	dateOfSale: String,
 })
 
-const Product = mongoose.model("Product", ProductSchema)
+export const Product = mongoose.model("Product", ProductSchema)
