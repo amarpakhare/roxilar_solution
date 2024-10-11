@@ -29,7 +29,6 @@ const App = () => {
 				}
 			)
 			setTransactions(transResponse.data)
-			// console.log(transResponse.data)
 
 			// Fetch Statistics
 			const statsResponse = await axios.get(
@@ -39,7 +38,6 @@ const App = () => {
 				}
 			)
 			setStatistics(statsResponse.data)
-			// console.log(statsResponse.data)
 
 			// Fetch Bar Chart Data
 			const barResponse = await axios.get(
@@ -47,7 +45,6 @@ const App = () => {
 				{params: {month}}
 			)
 			setBarData(barResponse.data)
-			// console.log(barResponse.data)
 
 			// Fetch Pie Chart Data
 			const pieResponse = await axios.get(
@@ -61,34 +58,64 @@ const App = () => {
 	}
 
 	return (
-		<div>
-			<h1>Transactions Dashboard</h1>
-			<label>
-				Select Month:
-				<select value={month} onChange={(e) => setMonth(e.target.value)}>
-					{["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"].map(
-						(m) => (
-							<option key={m} value={m}>
-								{m}
-							</option>
-						)
-					)}
-				</select>
-			</label>
-			<input
-				type="text"
-				placeholder="Search transactions..."
-				value={search}
-				onChange={(e) => setSearch(e.target.value)}
-			/>
-			<TransactionsTable
-				transactions={transactions}
-				page={page}
-				setPage={setPage}
-			/>
-			<StatisticsTable statistics={statistics} />
-			<BarChart data={barData} />
-			<PieChart data={pieData} />
+		<div className="min-h-screen bg-gray-100 p-8">
+			<div className="max-w-7xl mx-auto bg-white shadow-lg rounded-lg p-8">
+				<h1 className="text-3xl font-bold text-center text-blue-600 mb-8">
+					Transactions Dashboard
+				</h1>
+				<div className="flex justify-between items-center mb-6 bg-blue-50 p-4 rounded-lg shadow-sm">
+					<div className="flex items-center">
+						<label className="text-gray-700 font-semibold mr-4">
+							Select Month:
+						</label>
+						<select
+							value={month}
+							onChange={(e) => setMonth(e.target.value)}
+							className="p-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+						>
+							{[
+								"1",
+								"2",
+								"3",
+								"4",
+								"5",
+								"6",
+								"7",
+								"8",
+								"9",
+								"10",
+								"11",
+								"12",
+							].map((m) => (
+								<option
+									key={m}
+									value={m}
+									className="p-2 bg-white hover:bg-blue-100"
+								>
+									{m}
+								</option>
+							))}
+						</select>
+					</div>
+					<input
+						type="text"
+						placeholder="Search transactions..."
+						value={search}
+						onChange={(e) => setSearch(e.target.value)}
+						className="p-2 border border-gray-300 rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-blue-500"
+					/>
+				</div>
+				<TransactionsTable
+					transactions={transactions}
+					page={page}
+					setPage={setPage}
+				/>
+				<StatisticsTable statistics={statistics} />
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+					<BarChart data={barData} />
+					<PieChart data={pieData} />
+				</div>
+			</div>
 		</div>
 	)
 }

@@ -33,14 +33,51 @@ const BarChart = ({data}) => {
 				label: "Number of Items",
 				data: counts,
 				backgroundColor: "rgba(75, 192, 192, 0.6)",
+				borderColor: "rgba(75, 192, 192, 1)",
+				borderWidth: 1,
 			},
 		],
 	}
 
+	const options = {
+		responsive: true,
+		maintainAspectRatio: false,
+		scales: {
+			y: {
+				beginAtZero: true,
+				ticks: {
+					color: "#374151", // Dark gray text
+				},
+				grid: {
+					color: "#E5E7EB", // Light gray grid
+				},
+			},
+			x: {
+				ticks: {
+					color: "#374151",
+				},
+				grid: {
+					color: "#E5E7EB",
+				},
+			},
+		},
+		plugins: {
+			legend: {
+				labels: {
+					color: "#374151", // Dark gray text for legend
+				},
+			},
+		},
+	}
+
 	return (
-		<div>
-			<h2>Bar Chart</h2>
-			<Bar data={chartData} />
+		<div className="bg-white shadow-lg rounded-lg p-6 md:p-8 lg:p-10 mb-6">
+			<h2 className="text-2xl font-bold text-gray-800 mb-4">
+				Items Distribution
+			</h2>
+			<div className="relative h-96 w-full">
+				<Bar data={chartData} options={options} />
+			</div>
 		</div>
 	)
 }
