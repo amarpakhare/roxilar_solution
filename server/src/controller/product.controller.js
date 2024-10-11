@@ -36,7 +36,6 @@ const transactions = async (req, res) => {
 	let query = {}
 	let monthQuery = {}
 
-	// Filter by month using $expr if month is provided
 	if (month) {
 		monthQuery = {
 			$expr: {
@@ -45,16 +44,18 @@ const transactions = async (req, res) => {
 		}
 	}
 
-	// Add the search filter if provided
 	if (search) {
+		const searchAsNumber = Number(search) // Convert the search term to a number
 		query.$or = [
-			{title: {$regex: search, $options: "i"}},
-			{description: {$regex: search, $options: "i"}},
-			{price: {$regex: search, $options: "i"}}, // Assuming price is a string for search
+			{title: {$regex: search.trim(), $options: "i"}},
+			{description: {$regex: search.trim(), $options: "i"}},
+			// {price: {$regex: search, $options: "i"}}, // Assuming price is a string for search
 		]
+		if (!isNaN(searchAsNumber)) {
+			query.$or.push({price: searchAsNumber}) // This assumes you want exact matches on price
+		}
 	}
 
-	// Combine both the month filter and the search filter
 	let finalQuery = {...monthQuery, ...query}
 
 	try {
