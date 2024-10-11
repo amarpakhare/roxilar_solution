@@ -72,9 +72,7 @@ const BarChart = ({data}) => {
 
 	return (
 		<div className="bg-white shadow-lg rounded-lg p-6 md:p-8 lg:p-10 mb-6">
-			<h2 className="text-2xl font-bold text-gray-800 mb-4">
-				Items Distribution
-			</h2>
+			<h2 className="text-2xl font-bold text-gray-800 mb-4">Bar Chart Stats</h2>
 			<div className="relative h-96 w-full">
 				<Bar data={chartData} options={options} />
 			</div>

@@ -74,25 +74,25 @@ const App = () => {
 							className="p-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
 						>
 							{[
-								"1",
-								"2",
-								"3",
-								"4",
-								"5",
-								"6",
-								"7",
-								"8",
-								"9",
-								"10",
-								"11",
-								"12",
-							].map((m) => (
+								{name: "January", number: "1"},
+								{name: "February", number: "2"},
+								{name: "March", number: "3"},
+								{name: "April", number: "4"},
+								{name: "May", number: "5"},
+								{name: "June", number: "6"},
+								{name: "July", number: "7"},
+								{name: "August", number: "8"},
+								{name: "September", number: "9"},
+								{name: "October", number: "10"},
+								{name: "November", number: "11"},
+								{name: "December", number: "12"},
+							].map((monthObj) => (
 								<option
-									key={m}
-									value={m}
+									key={monthObj.number}
+									value={monthObj.number}
 									className="p-2 bg-white hover:bg-blue-100"
 								>
-									{m}
+									{monthObj.name}
 								</option>
 							))}
 						</select>
