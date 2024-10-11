@@ -1,1 +1,1 @@
-export const DB_NAME = "roxilar"
+export const DB_NAME = "product"
