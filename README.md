@@ -10,7 +10,6 @@ This is a full-stack application built using the MERN stack (MongoDB, Express.js
 - [Prerequisites](#prerequisites)
 - [Setup and Installation](#setup-and-installation)
 - [Running the Application](#running-the-application)
-- [API Endpoints](#api-endpoints)
 ## Features
 
 - CRUD operations for transactions
